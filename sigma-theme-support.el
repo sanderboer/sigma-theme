@@ -872,7 +872,7 @@ background color that is barely perceptible."
    '(helpful-heading                ((t (:inherit sigma-strong))))
 
    ;; --- sigma modeline ------------------------------------------------
-;;   '(sigma-modeline-active               ((t (:inherit sigma-subtle))))
+  '(sigma-modeline-active               ((t (:inherit sigma-subtle))))
    '(sigma-modeline-active-name          ((t (:inherit (sigma-strong sigma-modeline-active)))))
    '(sigma-modeline-active-primary       ((t (:inherit (sigma-default sigma-modeline-active)))))
    '(sigma-modeline-active-secondary     ((t (:inherit (sigma-faded sigma-modeline-active)))))
@@ -880,7 +880,7 @@ background color that is barely perceptible."
    '(sigma-modeline-active-status-RW     ((t (:inherit (sigma-faded-i sigma-strong)))))
    '(sigma-modeline-active-status-**     ((t (:inherit (sigma-popout-i sigma-strong)))))
 
-;;   '(sigma-modeline-inactive             ((t (:inherit sigma-subtle))))
+  '(sigma-modeline-inactive             ((t (:inherit sigma-subtle))))
    '(sigma-modeline-inactive-name        ((t (:inherit (sigma-faded sigma-modeline-inactive)))))
    '(sigma-modeline-inactive-primary     ((t (:inherit (sigma-faded sigma-modeline-inactive)))))
    '(sigma-modeline-inactive-secondary   ((t (:inherit (sigma-faded sigma-modeline-inactive)))))

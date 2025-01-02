@@ -1,48 +1,50 @@
-;;; sigma-dark-theme.el --- SIGMA theme -*- lexical-binding: t -*-
+;;; sigma-dark-theme.el --- SIGMA Dark Theme -*- lexical-binding: t -*-
 
-;; Copyright (C) 2021,2022 Free Software Foundation, Inc.
-
-;; Maintainer: Sander Boer <sanderboer@mauc.nl>
-;; URL: https://github.com/sanderboer/sigma-theme
-;; Version: 0.0.1
-;; Package-Requires: ((emacs "27.1"))
-;; Keywords: theme, dark, light
-
-;; This file is not part of GNU Emacs.
-
-;; This file is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-
-;; This file is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; For a full copy of the GNU General Public License
-;; see <https://www.gnu.org/licenses/>.
-
-;;; Commentary:
-;;
-;; SIGMA theme is a consistent theme that comes in two flavors:
-;;  - a light theme that is based on Material (https://material.io/)
-;;  - a dark theme that is based on Nord (https://www.nordtheme.com/).
-;;
-;; A theme is fully defined by a set of (1+6) faces as explained in
-;; "On the Design of Text Editors" / https://arxiv.org/abs/2008.06030
-;;
-
-;;; Code:
 (require 'sigma-theme-support)
+(require 'theme-utils)
 
-;;;###autoload
-(deftheme sigma-dark
-  "SIGMA dark theme")
+(deftheme sigma-dark "SIGMA Dark Theme")
 
-(set-foreground-color sigma-dark-foreground)
-(set-background-color sigma-dark-background)
-(sigma-theme 'sigma-dark 'dark)
+
+(defun sigma-color (x y z)
+  "Generate a normalized color using Oklab and scaling Y."
+  (let (
+        (scaled-y (/ (+ y 0) 24.0)))
+    ;; (+/COLOR/get-normalized-oklab x scaled-y z)
+    (+/COLOR/get-normalized-hpluv x scaled-y z)
+    ;; (+/COLOR/get-normalized-hsluv x scaled-y z)
+    ))
+
+(let* ((fg 0.75)
+       (bg 0.1)
+      (color-scheme
+       `(
+         (sigma-color-default    . ,(sigma-color fg 16 0.6) )
+         (sigma-color-background . ,(sigma-color bg  4 0.6) )
+         (sigma-color-foreground . ,(sigma-color fg 16 0.9) )
+         (sigma-color-highlight  . ,(sigma-color (+ fg .1)  4 0.9) )
+         (sigma-color-subtle     . ,(sigma-color (- fg 0.1)  6 0.7) )
+         (sigma-color-faded      . ,(sigma-color (- fg 0.2)  0 0.5) )
+         (sigma-color-salient    . ,(sigma-color (+ fg 0.1)  4 0.9) )
+         (sigma-color-popout     . ,(sigma-color (+ fg 0.1)  0 0.9) )
+         (sigma-color-critical   . ,(sigma-color (+ fg 0.1)  0 0.9) )
+         (sigma-color-strong     . ,(sigma-color (+ fg 0.1) 16 0.9) )
+         
+         (sigma-color-01    . ,(sigma-color fg  0 0.9) )
+         (sigma-color-02    . ,(sigma-color fg  2 0.9) )
+         (sigma-color-04    . ,(sigma-color fg  4 0.9) )
+         (sigma-color-06    . ,(sigma-color fg  6 0.9) )
+         (sigma-color-08    . ,(sigma-color fg  8 0.9) )
+         (sigma-color-10    . ,(sigma-color fg 10 0.9) )
+         (sigma-color-12    . ,(sigma-color fg 12 0.9) )
+         (sigma-color-14    . ,(sigma-color fg 14 0.9) )
+         (sigma-color-16    . ,(sigma-color fg 16 0.9) )
+         (sigma-color-18    . ,(sigma-color fg 18 0.9) )
+         (sigma-color-20    . ,(sigma-color fg 20 0.9) )
+         (sigma-color-22    . ,(sigma-color fg 22 0.9) )
+         )))
+
+  (sigma-apply-theme 'sigma-dark color-scheme))
 
 (provide-theme 'sigma-dark)
 ;;; sigma-dark-theme.el ends here

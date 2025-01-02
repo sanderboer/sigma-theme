@@ -1,4 +1,5 @@
-;;; sigma-light-theme.el --- SIGMA theme -*- lexical-binding: t -*-
+
+;;; sigma-light-theme.el --- SIGMA Light Theme -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2021,2022 Free Software Foundation, Inc.
 
@@ -6,7 +7,7 @@
 ;; URL: https://github.com/sanderboer/sigma-theme
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "27.1"))
-;; Keywords: theme, dark, light
+;; Keywords: theme, light
 
 ;; This file is not part of GNU Emacs.
 
@@ -25,24 +26,23 @@
 
 ;;; Commentary:
 ;;
-;; SIGMA theme is a consistent theme that comes in two flavors:
-;;  - a light theme that is based on Material (https://material.io/)
-;;  - a dark theme that is based on Nord (https://www.nordtheme.com/).
-;;
-;; A theme is fully defined by a set of (1+6) faces as explained in
-;; "On the Design of Text Editors" / https://arxiv.org/abs/2008.06030
-;;
+;; This file defines the light color scheme for the SIGMA theme.
 
 ;;; Code:
 (require 'sigma-theme-support)
 
-;;;###autoload
-(deftheme sigma-light
-  "SIGMA light theme")
+(deftheme sigma-light "SIGMA Light Theme")
 
-(set-foreground-color sigma-light-foreground)
-(set-background-color sigma-light-background)
-(sigma-theme 'sigma-light 'light)
+(let ((color-scheme
+       '((sigma-foreground . "#37474F")
+         (sigma-background . "#FFFFFF")
+         (sigma-highlight  . "#FAFAFA")
+         (sigma-subtle     . "#ECEFF1")
+         (sigma-faded      . "#90A4AE")
+         (sigma-salient    . "#673AB7")
+         (sigma-strong     . "#263238")
+         (sigma-critical   . "#FF6F00"))))
+  (sigma-apply-theme 'sigma-light color-scheme))
 
 (provide-theme 'sigma-light)
 ;;; sigma-light-theme.el ends here
